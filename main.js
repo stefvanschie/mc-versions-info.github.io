@@ -83,5 +83,7 @@ var versionClick = function(id) {
 $(document).ready(function() {
   versionClick("1.12.2");
   
-  $("a").click(versionClick(this.id));
+  $("a").click(function() {
+    versionClick(this.id);
+  });
 });
