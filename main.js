@@ -79,5 +79,11 @@ $(document).ready(function() {
      $("#versions-behind").text("You're " + arr[0] + " versions behind.");
      $("#bugs-fixed").text(arr[1] + " bugs have been fixed in future versions.");
      $("#time").text("This version is " + text + " old.");
+    
+     $("a").each(function() {
+       $(this).removeClass("active");
+     });
+    
+     $(this).addClass("active");
   });
 });
