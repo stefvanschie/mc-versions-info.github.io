@@ -75,6 +75,7 @@ var versionClick = function(id) {
     }
   }
      
+  $("#version").text(id);
   $("#versions-behind").text("You're " + arr[0] + " versions behind.");
   $("#bugs-fixed").text(arr[1] + " bugs have been fixed in future versions.");
   $("#time").text("This version is " + text + " old.");
