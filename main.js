@@ -1,4 +1,4 @@
-var version-info = {
+var versioninfo = {
   "1.12.2": [0, 0, new Date("2017-09-18")],
   "1.12.1": [1, 11, new Date("2017-08-03")],
   "1.12": [2, 13, new Date("2017-06-07")],
@@ -56,7 +56,7 @@ var version-info = {
 
 $(document).ready(function() {
   $("button").click(function() {
-     var arr = version-info[this.id];
+     var arr = versioninfo[this.id];
      var days = (new Date() - arr[2]) / (1000 * 60 * 60 * 24);
      var years = Math.floor(days / 365);
      var text = "";
