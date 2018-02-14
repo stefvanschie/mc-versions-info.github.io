@@ -54,7 +54,7 @@ var versioninfo = {
   "1.0": [52, 2501, new Date("2011-11-18")]
 };
 
-var versionClick = function(var id) {
+var versionClick = function(id) {
   var arr = versioninfo[id];
   var days = (new Date() - arr[2]) / (1000 * 60 * 60 * 24);
   var years = Math.floor(days / 365);
