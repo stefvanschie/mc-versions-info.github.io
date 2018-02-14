@@ -54,36 +54,34 @@ var versioninfo = {
   "1.0": [52, 2501, new Date("2011-11-18")]
 };
 
+var versionClick = function(var id) {
+  var arr = versioninfo[id];
+  var days = (new Date() - arr[2]) / (1000 * 60 * 60 * 24);
+  var years = Math.floor(days / 365);
+  var text = "";
+     
+  if (years === 0) {
+    days = Math.floor(days);
+    if (days === 1) {
+      text = days + " day";
+    } else {
+      text = days + " days";
+    }
+  } else {
+    if (years === 1) {
+      text = "over " + years + " year";
+    } else {
+      text = "over " + years + " years";
+    }
+  }
+     
+  $("#versions-behind").text("You're " + arr[0] + " versions behind.");
+  $("#bugs-fixed").text(arr[1] + " bugs have been fixed in future versions.");
+  $("#time").text("This version is " + text + " old.");
+};
+
 $(document).ready(function() {
-  $("a").click(function() {
-     var arr = versioninfo[this.id];
-     var days = (new Date() - arr[2]) / (1000 * 60 * 60 * 24);
-     var years = Math.floor(days / 365);
-     var text = "";
-     
-     if (years === 0) {
-       days = Math.floor(days);
-       if (days === 1) {
-         text = days + " day";
-       } else {
-         text = days + " days";
-       }
-     } else {
-       if (years === 1) {
-         text = "over " + years + " year";
-       } else {
-         text = "over " + years + " years";
-       }
-     }
-     
-     $("#versions-behind").text("You're " + arr[0] + " versions behind.");
-     $("#bugs-fixed").text(arr[1] + " bugs have been fixed in future versions.");
-     $("#time").text("This version is " + text + " old.");
-    
-     $("a").each(function() {
-       $(this).removeClass("active");
-     });
-    
-     $(this).addClass("active");
-  });
+  versionClick("1.12.2");
+  
+  $("a").click(versionClick(this.id));
 });
