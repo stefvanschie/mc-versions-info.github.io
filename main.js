@@ -56,21 +56,28 @@ var versioninfo = {
 
 $(document).ready(function() {
   $("a").click(function() {
-     console.log("Function");
-    
      var arr = versioninfo[this.id];
      var days = (new Date() - arr[2]) / (1000 * 60 * 60 * 24);
      var years = Math.floor(days / 365);
      var text = "";
      
      if (years === 0) {
-       text = Math.floor(days) + " days";
+       days = Math.floor(days);
+       if (days === 1) {
+         text = days + " day";
+       } else {
+         text = days + " days";
+       }
      } else {
-       text = years + " years";
+       if (years === 1) {
+         text = "over " + years + " year";
+       } else {
+         text = "over " + years + " years";
+       }
      }
      
      $("#versions-behind").text("You're " + arr[0] + " versions behind.");
      $("#bugs-fixed").text(arr[1] + " bugs have been fixed in future versions.");
-     $("#time").text("This version is over " + text + " old.");
+     $("#time").text("This version is " + text + " old.");
   });
 });
