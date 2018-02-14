@@ -55,7 +55,9 @@ var versioninfo = {
 };
 
 $(document).ready(function() {
-  $("button").click(function() {
+  $("a").click(function() {
+     console.log("Function");
+    
      var arr = versioninfo[this.id];
      var days = (new Date() - arr[2]) / (1000 * 60 * 60 * 24);
      var years = Math.floor(days / 365);
