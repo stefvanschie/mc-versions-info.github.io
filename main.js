@@ -85,7 +85,11 @@ var versionClick = function(id) {
 $(document).ready(function() {
   versionClick("1.12.2");
   
+  $("#menu").sideNav();
+  
   $("a").click(function() {
-    versionClick(this.id);
+    if (this.id !== "menu") {
+      versionClick(this.id);
+    }
   });
 });
