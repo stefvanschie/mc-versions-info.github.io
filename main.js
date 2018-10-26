@@ -1,4 +1,4 @@
-var versioninfo = {
+let versioninfo = {
   "1.13.2": [0, 0, 0, new Date("2018-10-22")],
   "1.13.1": [1, 10, 93, new Date("2018-08-22")],
   "1.13": [2, 152, 259, new Date("2018-07-18")],
@@ -57,12 +57,12 @@ var versioninfo = {
   "1.0": [55, 3032, 1056, new Date("2011-11-18")]
 };
 
-var versionClick = function(id) {
-  var arr = versioninfo[id];
-  var days = (new Date() - arr[3]) / (1000 * 60 * 60 * 24);
-  var years = Math.floor(days / 365);
-  var text = "";
-     
+let versionClick = function(id) {
+  let arr = versioninfo[id];
+  let days = (new Date() - arr[3]) / (1000 * 60 * 60 * 24);
+  let years = Math.floor(days / 365);
+  let text = "";
+
   if (years === 0) {
     days = Math.floor(days);
     if (days === 1) {
@@ -77,19 +77,21 @@ var versionClick = function(id) {
       text = "over " + years + " years";
     }
   }
-     
+
   $("#version").text(id);
-  $("#versions-behind").text("You're " + arr[0] + " versions behind.");
-  $("#bugs-fixed").text(arr[1] + " bugs have been fixed in future versions.");
-  $("#spigot").text(arr[2] + " Spigot bugs have been fixed in future versions.");
-  $("#time").text("This version is " + text + " old.");
+  $("#versions-behind").text(arr[0] + " version" + ((arr[0] !== 1) ? "s" : ""));
+  $("#bugs-fixed").text(arr[1]);
+  $("#spigot").text(arr[2]);
+  $("#time").text(text);
 };
 
 $(document).ready(function() {
-  versionClick("1.13.2");
-  
+  Object.keys(versioninfo).forEach(value => $("#nav-mobile").append(`<li><a class="waves-effect" id="${value}">${value}</a></li>`));
+
+  versionClick(Object.keys(versioninfo)[0]);
+
   $("#menu").sideNav();
-  
+
   $("a").click(function() {
     if (this.id !== "menu") {
       versionClick(this.id);
