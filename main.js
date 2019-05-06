@@ -87,14 +87,14 @@ let versionClick = function(id) {
 };
 
 $(document).ready(function() {
-  Object.keys(versioninfo).forEach(value => $("#nav-mobile").append(`<li><a class="waves-effect" id="${value}">${value}</a></li>`));
+  Object.keys(versioninfo).forEach(value => $("#nav-mobile").append(`<li><a class="sidenav-close waves-effect" id="${value}">${value}</a></li>`));
 
   versionClick(Object.keys(versioninfo)[0]);
-
-  $("#menu").sideNav();
+  
+  M.Sidenav.init($(".sidenav"), {});
 
   $("a").click(function() {
-    if (this.id !== "menu") {
+    if (this.id !== "menu" && this.id !== "nav-open") {
       versionClick(this.id);
     }
   });
