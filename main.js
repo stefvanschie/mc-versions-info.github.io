@@ -89,7 +89,13 @@ let versionClick = function(id) {
 $(document).ready(function() {
   Object.keys(versioninfo).forEach(value => $("#nav-mobile").append(`<li><a class="sidenav-close waves-effect" id="${value}">${value}</a></li>`));
 
-  versionClick(Object.keys(versioninfo)[0]);
+  let hash = $(location).attr("hash").substr(1);
+  
+  if (Object.keys(versioninfo).includes(hash)) {
+    versionClick(hash);
+  } else {
+	  versionClick(Object.keys(versioninfo)[0]);
+  }
   
   M.Sidenav.init($(".sidenav"), {});
 
