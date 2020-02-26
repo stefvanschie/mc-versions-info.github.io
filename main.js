@@ -71,20 +71,12 @@ let versionClick = function(id) {
   let years = Math.floor(days / 365);
   let text = "";
 
-  if (years === 0) {
-    days = Math.floor(days);
-    if (days === 1) {
-      text = days + " day";
-    } else {
-      text = days + " days";
-    }
-  } else {
-    if (years === 1) {
-      text = "over " + years + " year";
-    } else {
-      text = "over " + years + " years";
-    }
+  if (years !== 0) {
+    text = years + (years === 1 ? " year, " : " years, ")
   }
+
+  days = Math.floor(days) % 365;
+  text += days + (days === 1 ? " day" : " days")
 
   $("#version").text(id);
   $("#versions-behind").text(arr[0] + " version" + ((arr[0] !== 1) ? "s" : ""));
@@ -93,7 +85,7 @@ let versionClick = function(id) {
 };
 
 $(document).ready(function() {
-  Object.keys(versioninfo).forEach(value => $("#nav-mobile").append(`<li><a class="sidenav-close waves-effect" id="${value}">${value}</a></li>`));
+  Object.keys(versioninfo).forEach(value => $("#nav-mobile").append(`<li><a class="sidenav-close waves-effect" href="#${value}" id="${value}">${value}</a></li>`));
 
   let hash = $(location).attr("hash").substr(1);
   
