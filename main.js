@@ -65,23 +65,110 @@ let versioninfo = {
   "1.0": [63, 3850, new Date("2011-11-18")]
 };
 
+let getDaysInMonth = function(month, year) {
+  switch (month) {
+	case 0:
+	  return 31;
+	case 1:
+	  if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+		return 29;
+	  } else {
+		return 28;
+	  }
+	case 2:
+	  return 31;
+	case 3:
+	  return 30;
+	case 4:
+	  return 31;
+	case 5:
+	  return 30;
+	case 6:
+	  return 31;
+	case 7:
+	  return 31;
+	case 8:
+	  return 30;
+	case 9:
+	  return 31;
+	case 10:
+	  return 30;
+	case 11:
+	  return 31;
+  }
+}
+
 let versionClick = function(id) {
   let arr = versioninfo[id];
-  let days = (new Date() - arr[2]) / (1000 * 60 * 60 * 24);
-  let years = Math.floor(days / 365);
+  
+  let years = 0;
+  let days = 0;
+  
+  let releaseDate = new Date(arr[2].getTime());
+  const currentDate = new Date();
+  
+  while (releaseDate.getDate() !== currentDate.getDate()) {
+	days++;
+	
+	if (releaseDate.getDate() === getDaysInMonth(releaseDate.getMonth(), releaseDate.getFullYear())) {
+	  releaseDate.setDate(1);
+		  
+	  if (releaseDate.getMonth() === 11) {
+		releaseDate.setMonth(0);
+		releaseDate.setFullYear(releaseDate.getFullYear() + 1);
+	  } else {
+		releaseDate.setMonth(releaseDate.getMonth() + 1);
+	  }
+	} else {
+	  releaseDate.setDate(releaseDate.getDate() + 1);
+	}
+  }
+  
+  while (releaseDate.getMonth() !== currentDate.getMonth()) {
+	days += getDaysInMonth(releaseDate.getMonth(), releaseDate.getFullYear());
+	
+	if (releaseDate.getMonth() === 11) {
+	  releaseDate.setMonth(0);
+	  releaseDate.setFullYear(releaseDate.getFullYear() + 1);
+	} else {
+	  releaseDate.setMonth(releaseDate.getMonth() + 1);
+	}
+  }
+  
+  while (releaseDate.getFullYear() !== currentDate.getFullYear()) {
+	years++;
+	  
+    releaseDate.setFullYear(releaseDate.getFullYear() + 1);
+  }
+  
   let text = "";
 
   if (years !== 0) {
     text = years + (years === 1 ? " year, " : " years, ")
   }
 
-  days = Math.floor(days) % 365;
   text += days + (days === 1 ? " day" : " days")
 
   $("#version").text(id);
   $("#versions-behind").text(arr[0] + " version" + ((arr[0] !== 1) ? "s" : ""));
   $("#bugs-fixed").text(arr[1]);
   $("#time").text(text);
+};
+
+let getLeapYears = function(date1, date2) {
+	let leapYears = 0;
+	
+	for (let year = date1.getYear() + (date1.getMonth() >= 2 ? 1 : 0); year < date2.getYear(); year++) {
+		console.log("loop");
+		
+		if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+			leapYears++;
+		}
+	}
+	
+	console.log(leapYears);
+	
+	return leapYears;
 };
 
 $(document).ready(function() {
