@@ -153,7 +153,7 @@ let versionClick = function(id) {
 
   $("#version").text(id);
   $("#versions-behind").text(arr[0] + " version" + ((arr[0] !== 1) ? "s" : ""));
-  $("#bugs-fixed").text(arr[1]);
+  $("#bugs-fixed").text(arr[1] === 1 ? (arr[1] + " bug has") : (arr[1] + " bugs have"));
   $("#time").text(text);
 };
 
