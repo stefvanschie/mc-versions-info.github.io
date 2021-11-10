@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="stylesheet.css">
  
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Shows you information about various Minecraft versions, such as the amount of newer versions, amount of bugs fixed in future versions and age." />
   </head>
-  <body>
+  <body class="light-mode">
     <header>
-      <nav class="top-nav brown hide-on-large-only">
+      <nav class="top-nav hide-on-large-only">
         <div class="container">
           <a id="nav-open" href="#" data-target="nav-mobile" class="sidenav-trigger full">
             <i class="material-icons">menu</i>
@@ -28,7 +29,7 @@
         <div class="row">
           <div class="col s12 m8 offset-m3 xl7 offset-xl3">
             <div id="structure" class="section scrollspy">
-              <h2 id="version" class="header brown-text">-</h2>
+              <h2 id="version" class="header">-</h2>
               You're <span id="versions-behind">-</span> behind.<br />
               <span id="bugs-fixed">- bugs have</span> been fixed in future versions.<br />
               This version is <span id="time">-</span> old.
@@ -36,6 +37,12 @@
           </div>
         </div>
       </div>
+	  
+	  <div class="fixed-action-btn">
+	    <a id="toggle-mode" class="btn-floating btn-large">
+		  <i class="large material-icons">brightness_high</i>
+	    </a>
+	  </div>
     </main>
  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

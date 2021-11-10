@@ -193,8 +193,22 @@ $(document).ready(function() {
   M.Sidenav.init($(".sidenav"), {});
 
   $("a").click(function() {
-    if (this.id !== "menu" && this.id !== "nav-open") {
+    if (this.id !== "menu" && this.id !== "nav-open" && this.id !== "toggle-mode") {
       versionClick(this.id);
     }
+  });
+  
+  $('#toggle-mode').click(function() {
+	if ($("body").hasClass("light-mode")) {
+	  $("body").addClass("dark-mode");
+	  $("body").removeClass("light-mode");
+	  
+	  $("#toggle-mode i").text("brightness_3");
+	} else {
+	  $("body").addClass("light-mode");
+	  $("body").removeClass("dark-mode");
+	  
+	  $("#toggle-mode i").text("brightness_high");
+	}
   });
 });
